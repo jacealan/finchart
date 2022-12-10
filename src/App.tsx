@@ -157,7 +157,8 @@ function App() {
             </button>
             <button className="range-button" onClick={() => changeRange(1095)}>
               5Y
-            </button></div>
+            </button>
+          </div>
           <div className="group-buttons">
             <a href="#K">
               <div className="group-button">K</div>
@@ -195,9 +196,11 @@ function App() {
               >
                 <div className="title">
                   &nbsp;&nbsp;{stock.title}
-                  &nbsp;&nbsp;[<span style={{ color: "#9E5CCD" }}>개인</span>
+                  &nbsp;&nbsp;[&nbsp;
+                  <span style={{ color: "#9E5CCD" }}>개인</span>
                   &nbsp;&nbsp;<span style={{ color: "#F48416" }}>외국인</span>
-                  &nbsp;&nbsp;<span style={{ color: "#1193F0" }}>기관</span>]
+                  &nbsp;&nbsp;<span style={{ color: "#1193F0" }}>기관</span>
+                  &nbsp;]
                 </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/sise/siseMain${stock.code}.png?sid=${sid}`}
@@ -228,9 +231,17 @@ function App() {
                 href={`https://finance.naver.com/world/sise.naver?symbol=${stock.code}`}
                 target="_blank"
               >
-                <div className="title">&nbsp;&nbsp;{stock.title}</div>
+              <div className="title">
+                <span className="group" style={{ backgroundColor: "#d2e7d2" }}>
+                  해외지수
+                </span>
+                &nbsp;{stock.title}
+              </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/world/continent/${stock.code}.png?${sid}`}
+                  onError={(e) => {
+                    e.currentTarget.src = `https://ssl.pstatic.net/imgfinance/chart/world/candle/day/${stock.code}.png?${sid}`
+                  }}
                   style={{
                     display: `${range.day1}`,
                   }}
@@ -263,7 +274,12 @@ function App() {
                 href={`https://finance.naver.com/marketindex/exchangeDetail.naver?marketindexCd=${stock.code}`}
                 target="_blank"
               >
-                <div className="title">&nbsp;&nbsp;{stock.title}</div>
+              <div className="title">
+                <span className="group" style={{ backgroundColor: "#dfc6c6" }}>
+                  시장지표
+                </span>
+                &nbsp;{stock.title}
+              </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/marketindex/area/month/${stock.code}.png?sidcode=`}
                   style={{
@@ -298,7 +314,12 @@ function App() {
                 href={`https://finance.naver.com/item/main.naver?code=${stock.code}`}
                 target="_blank"
               >
-                <div className="title">&nbsp;&nbsp;{stock.title}</div>
+                <div className="title">
+                  <span className="group" style={{ backgroundColor: "#ddd" }}>
+                    관심1
+                  </span>
+                  &nbsp;{stock.title}
+                </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/item/area/week/${stock.code}.png?sidcode=${sid}`}
                   style={{
@@ -333,7 +354,15 @@ function App() {
                 href={`https://finance.naver.com/item/main.naver?code=${stock.code}`}
                 target="_blank"
               >
-                <div className="title">&nbsp;&nbsp;{stock.title}</div>
+                <div className="title">
+                  <span
+                    className="group"
+                    style={{ backgroundColor: "#ffffbf" }}
+                  >
+                    KB증권
+                  </span>
+                  &nbsp;{stock.title}
+                </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/item/area/week/${stock.code}.png?sidcode=${sid}`}
                   style={{
@@ -368,7 +397,15 @@ function App() {
                 href={`https://finance.naver.com/item/main.naver?code=${stock.code}`}
                 target="_blank"
               >
-                <div className="title">&nbsp;&nbsp;{stock.title}</div>
+                <div className="title">
+                  <span
+                    className="group"
+                    style={{ backgroundColor: "#e6ffe3" }}
+                  >
+                    NH증권
+                  </span>
+                  &nbsp;{stock.title}
+                </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/item/area/week/${stock.code}.png?sidcode=${sid}`}
                   style={{
@@ -403,7 +440,15 @@ function App() {
                 href={`https://finance.naver.com/item/main.naver?code=${stock.code}`}
                 target="_blank"
               >
-                <div className="title">&nbsp;&nbsp;{stock.title}</div>
+                <div className="title">
+                  <span
+                    className="group"
+                    style={{ backgroundColor: "#e4f6f8" }}
+                  >
+                    삼성증권
+                  </span>
+                  &nbsp;{stock.title}
+                </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/item/area/week/${stock.code}.png?sidcode=${sid}`}
                   style={{
@@ -438,7 +483,15 @@ function App() {
                 href={`https://finance.naver.com/item/main.naver?code=${stock.code}`}
                 target="_blank"
               >
-                <div className="title">&nbsp;&nbsp;{stock.title}</div>
+                <div className="title">
+                  <span
+                    className="group"
+                    style={{ backgroundColor: "#e9d3ff" }}
+                  >
+                    신한증권
+                  </span>
+                  &nbsp;{stock.title}
+                </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/item/area/week/${stock.code}.png?sidcode=${sid}`}
                   style={{

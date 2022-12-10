@@ -20,7 +20,11 @@
   bottom: 62px;
   width: 120px;
   height: 34px;
-  background-color: #123;
+  background-image: radial-gradient(
+    circle farthest-corner at 2.7% 6.3%,
+    rgba(138, 235, 185, 1) 0%,
+    rgba(24, 40, 115, 1) 90%
+  );
   opacity: 0.7;
   border-radius: 10px;
   color: white;
@@ -38,7 +42,6 @@
   height: 100px;
   width: 100%;
   border-radius: 10px;
-
 }
 
 .range-buttons {
@@ -61,8 +64,14 @@
   width: 36px;
   height: 36px;
   margin: 2px;
-  background-color: yellow;
+  background-image: linear-gradient(
+    174.2deg,
+    rgba(255, 244, 228, 1) 7.1%,
+    rgba(240, 246, 238, 1) 67.4%
+  );
+  font-size: 16px;
   border-radius: 10px;
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,8 +82,14 @@
   width: 36px;
   height: 36px;
   margin: 2px;
-  background-color: white;
+  background-image: linear-gradient(
+    109.6deg,
+    rgba(204, 228, 247, 1) 11.2%,
+    rgba(237, 246, 250, 1) 100.2%
+  );
+  font-size: 16px;
   border-radius: 10px;
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -101,6 +116,12 @@
   /* color: white; */
 }
 
+.group {
+  padding: 0 5px;
+  background-color: #ccc;
+  border-radius: 5px;
+  font-size: 10px;
+}
 .title {
   background-color: white;
 }
