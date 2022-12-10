@@ -1,16 +1,23 @@
-import React, { useState } from "react"
-// import { Link } from "react-router-dom"
+import React, { useState, useEffect } from "react"
 import "./App.css"
-
-const viewWidth: number = document.documentElement.clientWidth
-const viewHeight: number = document.documentElement.clientHeight
-const colsCount: number =
-  viewWidth >= 560 ? Math.floor((viewWidth - 10) / 550) : 1
 
 const now: Date = new Date()
 const sid: number = now.getTime()
 
 function App() {
+  const [size, setSize] = useState<{
+    viewWidth: number
+    viewHeight: number
+    colsCount: number
+  }>({
+    viewWidth: document.documentElement.clientWidth,
+    viewHeight: document.documentElement.clientHeight,
+    colsCount:
+      document.documentElement.clientWidth >= 560
+        ? Math.floor((document.documentElement.clientWidth - 10) / 550)
+        : 1,
+  })
+
   const [range, setRange] = useState<{
     day1: string
     day90: string
@@ -140,6 +147,40 @@ function App() {
     { title: "TIGER AI코리아프로스액티브", code: "365040" },
   ]
 
+  // Eventlistener for hardware
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setSize({
+        viewWidth: document.documentElement.clientWidth,
+        viewHeight: document.documentElement.clientHeight,
+        colsCount:
+          document.documentElement.clientWidth >= 560
+            ? Math.floor((document.documentElement.clientWidth - 10) / 550)
+            : 1,
+      })
+    })
+  }, [])
+
+  const styles = {
+    App: {
+      width: `${
+        size.viewWidth >= 560 ? size.colsCount * 550 + 10 : size.viewWidth
+      }px`,
+    },
+    Header: {
+      width: `${
+        size.viewWidth >= 560 ? size.colsCount * 550 - 10 : size.viewWidth
+      }px`,
+    },
+    Charts: {
+      gridTemplateColumns: `${
+        size.viewWidth >= 560
+          ? "repeat(auto-fit, minmax(540px, 1fr))"
+          : "repeat(auto-fit, minmax(360px, 1fr))"
+      }`,
+    },
+  }
+
   return (
     <div className="center">
       <div className="App" style={styles.App}>
@@ -187,7 +228,7 @@ function App() {
           </div>
         </div>
 
-        <div className="charts">
+        <div className="charts" style={styles.Charts}>
           {korea.map((stock, index) => (
             <div key={stock.code} id={index === 0 ? "K" : ""}>
               <a
@@ -529,15 +570,6 @@ function App() {
       </div>
     </div>
   )
-}
-
-const styles = {
-  App: {
-    width: `${viewWidth >= 560 ? colsCount * 550 + 10 : viewWidth}px`,
-  },
-  Header: {
-    width: `${viewWidth >= 560 ? colsCount * 550 - 10 : viewWidth}px`,
-  },
 }
 
 export default App
