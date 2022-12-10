@@ -20,6 +20,7 @@
   bottom: 62px;
   width: 120px;
   height: 34px;
+  margin: 10px;
   background-image: radial-gradient(
     circle farthest-corner at 2.7% 6.3%,
     rgba(138, 235, 185, 1) 0%,
@@ -40,7 +41,8 @@
   /* top: 0; */
   bottom: 0;
   height: 100px;
-  width: 100%;
+  margin: 10px;
+  /* width: 100%; */
   border-radius: 10px;
 }
 
@@ -102,7 +104,7 @@
   margin-bottom: 100px;
   padding: 10px;
   grid-area: charts;
-  background-color: #333;
+  background-color: #444;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
   gap: 10px;

@@ -231,12 +231,15 @@ function App() {
                 href={`https://finance.naver.com/world/sise.naver?symbol=${stock.code}`}
                 target="_blank"
               >
-              <div className="title">
-                <span className="group" style={{ backgroundColor: "#d2e7d2" }}>
-                  해외지수
-                </span>
-                &nbsp;{stock.title}
-              </div>
+                <div className="title">
+                  <span
+                    className="group"
+                    style={{ backgroundColor: "#d2e7d2" }}
+                  >
+                    해외지수
+                  </span>
+                  &nbsp;{stock.title}
+                </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/world/continent/${stock.code}.png?${sid}`}
                   onError={(e) => {
@@ -274,12 +277,15 @@ function App() {
                 href={`https://finance.naver.com/marketindex/exchangeDetail.naver?marketindexCd=${stock.code}`}
                 target="_blank"
               >
-              <div className="title">
-                <span className="group" style={{ backgroundColor: "#dfc6c6" }}>
-                  시장지표
-                </span>
-                &nbsp;{stock.title}
-              </div>
+                <div className="title">
+                  <span
+                    className="group"
+                    style={{ backgroundColor: "#dfc6c6" }}
+                  >
+                    시장지표
+                  </span>
+                  &nbsp;{stock.title}
+                </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/marketindex/area/month/${stock.code}.png?sidcode=`}
                   style={{
@@ -530,7 +536,7 @@ const styles = {
     width: `${viewWidth >= 560 ? colsCount * 550 + 10 : viewWidth}px`,
   },
   Header: {
-    width: `${viewWidth >= 560 ? colsCount * 550 + 10 : viewWidth}px`,
+    width: `${viewWidth >= 560 ? colsCount * 550 - 10 : viewWidth}px`,
   },
 }
 
