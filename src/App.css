@@ -17,7 +17,7 @@
 .Logo {
   position: fixed;
   z-index: 20;
-  bottom: 72px;
+  bottom: 52px;
   width: 120px;
   height: 34px;
   margin: 0 0 0 15px;
@@ -41,7 +41,7 @@
   z-index: 10;
   /* top: 0; */
   bottom: 0;
-  height: 100px;
+  height: 80px;
   margin: 10px;
   /* width: 100%; */
   border-radius: 15px;
@@ -128,7 +128,6 @@
   color: white;
   border-radius: 5px;
   font-size: 10px;
-
 }
 .title {
   background-color: white;
@@ -138,4 +137,54 @@ img {
 }
 img.by4 {
   width: calc(100% / 4);
+}
+
+.form-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* width: 100vw; */
+  /* height: 730px; */
+  margin: 10px;
+  padding: 10px;
+  background-color: black;
+  opacity: 0.8;
+  border-radius: 10px;
+  /* display: none; */
+  color: white;
+}
+.form-button {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+}
+.form-description {
+  width: 100%;
+  padding: 5 px;
+  border-radius: 10px;
+  border: none;
+  font-size: 10px;
+  text-align: right;
+}
+.data-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 10px;
+}
+.form-group {
+  /* width: 165px; */
+  /* height: 340px; */
+  border-radius: 10px;
+  border: solid 1px white;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+}
+input {
+  width: 100%;
+  height: 24px;
+  text-align: center;
 }
