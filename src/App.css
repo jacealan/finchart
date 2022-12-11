@@ -17,19 +17,20 @@
 .Logo {
   position: fixed;
   z-index: 20;
-  bottom: 62px;
+  bottom: 72px;
   width: 120px;
   height: 34px;
-  margin: 10px;
-  background-image: radial-gradient(
-    circle farthest-corner at 2.7% 6.3%,
-    rgba(138, 235, 185, 1) 0%,
-    rgba(24, 40, 115, 1) 90%
+  margin: 0 0 0 15px;
+  background-image: linear-gradient(
+    94.3deg,
+    rgba(26, 33, 64, 1) 10.9%,
+    rgba(81, 84, 115, 1) 87.1%
   );
   opacity: 0.7;
   border-radius: 10px;
   color: white;
   font-size: 24px;
+  font-weight: 700;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,11 +44,14 @@
   height: 100px;
   margin: 10px;
   /* width: 100%; */
-  border-radius: 10px;
+  border-radius: 15px;
+  /* border: solid 2px black; */
 }
 
 .range-buttons {
-  background-color: #234;
+  padding: 0 10px 0 0;
+  border-radius: 15px 15px 0 0;
+  background-color: #111;
   opacity: 0.8;
   grid-area: range-buttons;
   display: flex;
@@ -55,7 +59,9 @@
 }
 
 .group-buttons {
-  background-color: #123;
+  padding: 0 10px 0 0;
+  border-radius: 0 0 15px 15px;
+  background-color: #000;
   opacity: 0.8;
   grid-area: group-buttons;
   display: flex;
@@ -66,11 +72,7 @@
   width: 36px;
   height: 36px;
   margin: 2px;
-  background-image: linear-gradient(
-    174.2deg,
-    rgba(255, 244, 228, 1) 7.1%,
-    rgba(240, 246, 238, 1) 67.4%
-  );
+  background-image: linear-gradient(135deg, #92ffc0 50%, #002661 100%);
   font-size: 16px;
   border-radius: 10px;
   border: none;
@@ -84,11 +86,8 @@
   width: 36px;
   height: 36px;
   margin: 2px;
-  background-image: linear-gradient(
-    109.6deg,
-    rgba(204, 228, 247, 1) 11.2%,
-    rgba(237, 246, 250, 1) 100.2%
-  );
+  background-image: linear-gradient(135deg, #3b2667 50%, #bc78ec 100%);
+  color: white;
   font-size: 16px;
   border-radius: 10px;
   border: none;
@@ -113,9 +112,7 @@
 }
 
 .chart {
-  /* height: 100px; */
   background-color: white;
-  /* color: white; */
 }
 
 .group {

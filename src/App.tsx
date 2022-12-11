@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react"
+import krx from "./krx"
 import "./App.css"
 
 const now: Date = new Date()
 const sid: number = now.getTime()
+const codes:any[] = krx.OutBlock_1
 
 function App() {
   const [size, setSize] = useState<{
@@ -150,13 +152,13 @@ function App() {
   // Eventlistener for hardware
   useEffect(() => {
     window.addEventListener("resize", () => {
+      const clientWidth = document.documentElement.clientWidth
+      const clientHeight = document.documentElement.clientHeight
       setSize({
-        viewWidth: document.documentElement.clientWidth,
-        viewHeight: document.documentElement.clientHeight,
+        viewWidth: clientWidth,
+        viewHeight: clientHeight,
         colsCount:
-          document.documentElement.clientWidth >= 560
-            ? Math.floor((document.documentElement.clientWidth - 10) / 550)
-            : 1,
+          clientWidth >= 560 ? Math.floor((clientWidth - 10) / 550) : 1,
       })
     })
   }, [])
@@ -169,7 +171,7 @@ function App() {
     },
     Header: {
       width: `${
-        size.viewWidth >= 560 ? size.colsCount * 550 - 10 : size.viewWidth
+        size.viewWidth >= 560 ? size.colsCount * 550 - 10 : size.viewWidth - 20
       }px`,
     },
     Charts: {
@@ -187,16 +189,16 @@ function App() {
         <div className="Logo">Fin Chart</div>
         <div className="Header" style={styles.Header}>
           <div className="range-buttons">
-            <button className="range-button" onClick={() => changeRange(1)}>
+            <button className="range-button" onClick={() => changeRange(1)} style={{fontWeight: `${range.day1 === "block" ? 700 : 400}`}}>
               1D
             </button>
-            <button className="range-button" onClick={() => changeRange(90)}>
+            <button className="range-button" onClick={() => changeRange(90)} style={{fontWeight: `${range.day90 === "block" ? 700 : 400}`}}>
               3M
             </button>
-            <button className="range-button" onClick={() => changeRange(365)}>
+            <button className="range-button" onClick={() => changeRange(365)} style={{fontWeight: `${range.day365 === "block" ? 700 : 400}`}}>
               1Y
             </button>
-            <button className="range-button" onClick={() => changeRange(1095)}>
+            <button className="range-button" onClick={() => changeRange(1095)} style={{fontWeight: `${range.day1095 === "block" ? 700 : 400}`}}>
               5Y
             </button>
           </div>
@@ -237,11 +239,10 @@ function App() {
               >
                 <div className="title">
                   &nbsp;&nbsp;{stock.title}
-                  &nbsp;&nbsp;[&nbsp;
-                  <span style={{ color: "#9E5CCD" }}>개인</span>
-                  &nbsp;&nbsp;<span style={{ color: "#F48416" }}>외국인</span>
-                  &nbsp;&nbsp;<span style={{ color: "#1193F0" }}>기관</span>
-                  &nbsp;]
+                  &nbsp;&nbsp;&nbsp;
+                  <span style={{ color: "#9E5CCD",fontSize: "12px" }}>█개인</span>
+                  &nbsp;&nbsp;<span style={{ color: "#F48416",fontSize: "12px" }}>█외국인</span>
+                  &nbsp;&nbsp;<span style={{ color: "#1193F0",fontSize: "12px" }}>█기관</span>                  
                 </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/sise/siseMain${stock.code}.png?sid=${sid}`}
