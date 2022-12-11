@@ -122,6 +122,14 @@
   border-radius: 5px;
   font-size: 10px;
 }
+.candle {
+  padding: 0 5px;
+  background-color: #888;
+  color: white;
+  border-radius: 5px;
+  font-size: 10px;
+
+}
 .title {
   background-color: white;
 }

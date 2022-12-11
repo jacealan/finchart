@@ -4,7 +4,7 @@ import "./App.css"
 
 const now: Date = new Date()
 const sid: number = now.getTime()
-const codes:any[] = krx.OutBlock_1
+const codes: any[] = krx.OutBlock_1
 
 function App() {
   const [size, setSize] = useState<{
@@ -189,16 +189,32 @@ function App() {
         <div className="Logo">Fin Chart</div>
         <div className="Header" style={styles.Header}>
           <div className="range-buttons">
-            <button className="range-button" onClick={() => changeRange(1)} style={{fontWeight: `${range.day1 === "block" ? 700 : 400}`}}>
+            <button
+              className="range-button"
+              onClick={() => changeRange(1)}
+              style={{ fontWeight: `${range.day1 === "block" ? 700 : 400}` }}
+            >
               1D
             </button>
-            <button className="range-button" onClick={() => changeRange(90)} style={{fontWeight: `${range.day90 === "block" ? 700 : 400}`}}>
+            <button
+              className="range-button"
+              onClick={() => changeRange(90)}
+              style={{ fontWeight: `${range.day90 === "block" ? 700 : 400}` }}
+            >
               3M
             </button>
-            <button className="range-button" onClick={() => changeRange(365)} style={{fontWeight: `${range.day365 === "block" ? 700 : 400}`}}>
+            <button
+              className="range-button"
+              onClick={() => changeRange(365)}
+              style={{ fontWeight: `${range.day365 === "block" ? 700 : 400}` }}
+            >
               1Y
             </button>
-            <button className="range-button" onClick={() => changeRange(1095)} style={{fontWeight: `${range.day1095 === "block" ? 700 : 400}`}}>
+            <button
+              className="range-button"
+              onClick={() => changeRange(1095)}
+              style={{ fontWeight: `${range.day1095 === "block" ? 700 : 400}` }}
+            >
               5Y
             </button>
           </div>
@@ -240,9 +256,17 @@ function App() {
                 <div className="title">
                   &nbsp;&nbsp;{stock.title}
                   &nbsp;&nbsp;&nbsp;
-                  <span style={{ color: "#9E5CCD",fontSize: "12px" }}>█개인</span>
-                  &nbsp;&nbsp;<span style={{ color: "#F48416",fontSize: "12px" }}>█외국인</span>
-                  &nbsp;&nbsp;<span style={{ color: "#1193F0",fontSize: "12px" }}>█기관</span>                  
+                  <span style={{ color: "#9E5CCD", fontSize: "12px" }}>
+                    █개인
+                  </span>
+                  &nbsp;&nbsp;
+                  <span style={{ color: "#F48416", fontSize: "12px" }}>
+                    █외국인
+                  </span>
+                  &nbsp;&nbsp;
+                  <span style={{ color: "#1193F0", fontSize: "12px" }}>
+                    █기관
+                  </span>
                 </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/sise/siseMain${stock.code}.png?sid=${sid}`}
@@ -280,7 +304,14 @@ function App() {
                   >
                     해외지수
                   </span>
-                  &nbsp;{stock.title}
+                  &nbsp;{stock.title}&nbsp;
+                  {range.day1 !== "block" && (
+                    <span className="candle">
+                      {range.day90 === "block" ? "일봉·" : null}
+                      {range.day365 === "block" ? "주봉:" : null}
+                      {range.day1095 === "block" ? "월봉⋮" : null}
+                    </span>
+                  )}
                 </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/world/continent/${stock.code}.png?${sid}`}
@@ -366,7 +397,14 @@ function App() {
                   <span className="group" style={{ backgroundColor: "#ddd" }}>
                     관심1
                   </span>
-                  &nbsp;{stock.title}
+                  &nbsp;{stock.title}&nbsp;
+                  {range.day1 !== "block" && (
+                    <span className="candle">
+                      {range.day90 === "block" ? "일봉·" : null}
+                      {range.day365 === "block" ? "주봉:" : null}
+                      {range.day1095 === "block" ? "월봉⋮" : null}
+                    </span>
+                  )}
                 </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/item/area/week/${stock.code}.png?sidcode=${sid}`}
@@ -409,7 +447,14 @@ function App() {
                   >
                     KB증권
                   </span>
-                  &nbsp;{stock.title}
+                  &nbsp;{stock.title}&nbsp;
+                  {range.day1 !== "block" && (
+                    <span className="candle">
+                      {range.day90 === "block" ? "일봉·" : null}
+                      {range.day365 === "block" ? "주봉:" : null}
+                      {range.day1095 === "block" ? "월봉⋮" : null}
+                    </span>
+                  )}
                 </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/item/area/week/${stock.code}.png?sidcode=${sid}`}
@@ -452,7 +497,14 @@ function App() {
                   >
                     NH증권
                   </span>
-                  &nbsp;{stock.title}
+                  &nbsp;{stock.title}&nbsp;
+                  {range.day1 !== "block" && (
+                    <span className="candle">
+                      {range.day90 === "block" ? "일봉·" : null}
+                      {range.day365 === "block" ? "주봉:" : null}
+                      {range.day1095 === "block" ? "월봉⋮" : null}
+                    </span>
+                  )}
                 </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/item/area/week/${stock.code}.png?sidcode=${sid}`}
@@ -495,7 +547,14 @@ function App() {
                   >
                     삼성증권
                   </span>
-                  &nbsp;{stock.title}
+                  &nbsp;{stock.title}&nbsp;
+                  {range.day1 !== "block" && (
+                    <span className="candle">
+                      {range.day90 === "block" ? "일봉·" : null}
+                      {range.day365 === "block" ? "주봉:" : null}
+                      {range.day1095 === "block" ? "월봉⋮" : null}
+                    </span>
+                  )}
                 </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/item/area/week/${stock.code}.png?sidcode=${sid}`}
@@ -538,7 +597,14 @@ function App() {
                   >
                     신한증권
                   </span>
-                  &nbsp;{stock.title}
+                  &nbsp;{stock.title}&nbsp;
+                  {range.day1 !== "block" && (
+                    <span className="candle">
+                      {range.day90 === "block" ? "일봉·" : null}
+                      {range.day365 === "block" ? "주봉:" : null}
+                      {range.day1095 === "block" ? "월봉⋮" : null}
+                    </span>
+                  )}
                 </div>
                 <img
                   src={`https://ssl.pstatic.net/imgfinance/chart/item/area/week/${stock.code}.png?sidcode=${sid}`}
