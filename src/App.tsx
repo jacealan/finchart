@@ -10,7 +10,6 @@ const codes: any[] = [...krxStock.OutBlock_1, ...krxETF.output]
 function App() {
   const [loadtime, setLoadtime] = useState<Date>(now)
   const [editmode, setEditmode] = useState<boolean>(false)
-  console.log(loadtime, editmode)
 
   const [size, setSize] = useState<{
     viewWidth: number
@@ -171,7 +170,7 @@ function App() {
     color: string
   }[] = [
     {
-      groupTitle: "관심1",
+      groupTitle: "G1",
       codes: [
         { title: "삼성전자", code: "005930" },
         { title: "네이버", code: "035420" },
@@ -355,20 +354,23 @@ function App() {
               <a href="#I">
                 <div className="group-button">I</div>
               </a>
-              <a href="#G1">
-                <div className="group-button">G1</div>
+              <a href={`#${stocks[0]?.groupTitle}`}>
+                <div className="group-button">{stocks[0]?.groupTitle.slice(0, 2)}</div>
               </a>
-              <a href="#KB">
-                <div className="group-button">KB</div>
+              <a href={`#${stocks[1]?.groupTitle}`}>
+                <div className="group-button">{stocks[1]?.groupTitle.slice(0, 2)}</div>
               </a>
-              <a href="#NH">
-                <div className="group-button">NH</div>
+              <a href={`#${stocks[2]?.groupTitle}`}>
+                <div className="group-button">{stocks[2]?.groupTitle.slice(0, 2)}</div>
               </a>
-              <a href="#SS">
-                <div className="group-button">SS</div>
+              <a href={`#${stocks[3]?.groupTitle}`}>
+                <div className="group-button">{stocks[3]?.groupTitle.slice(0, 2)}</div>
               </a>
-              <a href="#SH">
-                <div className="group-button">SH</div>
+              <a href={`#${stocks[4]?.groupTitle}`}>
+                <div className="group-button">{stocks[4]?.groupTitle.slice(0, 2)}</div>
+              </a>
+              <a href={`#${stocks[5]?.groupTitle}`}>
+                <div className="group-button">{stocks[5]?.groupTitle.slice(0, 2)}</div>
               </a>
             </div>
           </div>
@@ -519,7 +521,7 @@ function App() {
             group.codes.map((stock, stockIndex) => {
               if (findStock(stock.code)?.ISU_ABBRV)
                 return (
-                  <div key={`g${groupIndex}s${stockIndex}`} id="SH">
+                  <div key={`g${groupIndex}s${stockIndex}`} id={group.groupTitle}>
                     <a
                       href={`https://finance.naver.com/item/main.naver?code=${stock.code}`}
                       target="_blank"
