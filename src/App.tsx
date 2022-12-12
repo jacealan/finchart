@@ -8,7 +8,9 @@ const sid: number = now.getTime()
 const codes: any[] = [...krxStock.OutBlock_1, ...krxETF.output]
 
 function App() {
-  const [editmode, setEditmode] = useState(false)
+  const [loadtime, setLoadtime] = useState<Date>(now)
+  const [editmode, setEditmode] = useState<boolean>(false)
+  console.log(loadtime, editmode)
 
   const [size, setSize] = useState<{
     viewWidth: number
@@ -291,65 +293,84 @@ function App() {
   return (
     <div className="center">
       <div className="App" style={styles.App}>
-        <div className="Logo" onClick={() => setEditmode(true)}>
-          Fin Chart
-        </div>
         <div className="Header" style={styles.Header}>
-          <div className="range-buttons">
-            <button
-              className="range-button"
-              onClick={() => changeRange(1)}
-              style={{ fontWeight: `${range.day1 === "block" ? 700 : 400}` }}
-            >
-              1D
-            </button>
-            <button
-              className="range-button"
-              onClick={() => changeRange(90)}
-              style={{ fontWeight: `${range.day90 === "block" ? 700 : 400}` }}
-            >
-              3M
-            </button>
-            <button
-              className="range-button"
-              onClick={() => changeRange(365)}
-              style={{ fontWeight: `${range.day365 === "block" ? 700 : 400}` }}
-            >
-              1Y
-            </button>
-            <button
-              className="range-button"
-              onClick={() => changeRange(1095)}
-              style={{ fontWeight: `${range.day1095 === "block" ? 700 : 400}` }}
-            >
-              5Y
-            </button>
+          <div className="Header-row1">
+            <div className="Logo" onClick={() => setEditmode(true)}>
+              FC
+            </div>
+            <div className="range-buttons">
+              <div
+                className="loadtime"
+                onClick={() => window.location.reload()}
+              >
+                loaded at
+                <br />
+                {loadtime.toLocaleDateString("ko-KR")}
+                <br />
+                {loadtime.toLocaleTimeString("ko-KR")}
+              </div>
+              <button
+                className="range-button"
+                onClick={() => changeRange(1)}
+                style={{ fontWeight: `${range.day1 === "block" ? 700 : 400}` }}
+              >
+                1D
+              </button>
+              <button
+                className="range-button"
+                onClick={() => changeRange(90)}
+                style={{ fontWeight: `${range.day90 === "block" ? 700 : 400}` }}
+              >
+                3M
+              </button>
+              <button
+                className="range-button"
+                onClick={() => changeRange(365)}
+                style={{
+                  fontWeight: `${range.day365 === "block" ? 700 : 400}`,
+                }}
+              >
+                1Y
+              </button>
+              <button
+                className="range-button"
+                onClick={() => changeRange(1095)}
+                style={{
+                  fontWeight: `${range.day1095 === "block" ? 700 : 400}`,
+                }}
+              >
+                5Y
+              </button>
+            </div>
           </div>
-          <div className="group-buttons">
-            <a href="#K">
-              <div className="group-button">K</div>
-            </a>
-            <a href="#W">
-              <div className="group-button">W</div>
-            </a>
-            <a href="#I">
-              <div className="group-button">I</div>
-            </a>
-            <a href="#G1">
-              <div className="group-button">G1</div>
-            </a>
-            <a href="#KB">
-              <div className="group-button">KB</div>
-            </a>
-            <a href="#NH">
-              <div className="group-button">NH</div>
-            </a>
-            <a href="#SS">
-              <div className="group-button">SS</div>
-            </a>
-            <a href="#SH">
-              <div className="group-button">SH</div>
-            </a>
+          <div className="Header-row2">
+            <div></div>
+            <div className="group-buttons">
+              <a href="#K">
+                <div className="group-button">K</div>
+              </a>
+              <a href="#W">
+                <div className="group-button">W</div>
+              </a>
+              <a href="#I">
+                <div className="group-button">I</div>
+              </a>
+              <a href="#G1">
+                <div className="group-button">G1</div>
+              </a>
+              <a href="#KB">
+                <div className="group-button">KB</div>
+              </a>
+              <a href="#NH">
+                <div className="group-button">NH</div>
+              </a>
+              <a href="#SS">
+                <div className="group-button">SS</div>
+              </a>
+              <a href="#SH">
+                <div className="group-button">SH</div>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -570,7 +591,9 @@ function App() {
           >
             수정
           </button>
-          <div className="form-description">신규 종목은 최소 1주일 후 등록가능합니다</div>
+          <div className="form-description">
+            신규 종목은 최소 1주일 후 등록가능합니다
+          </div>
           <div className="data-form">
             <div className="form-group">
               <input
