@@ -13,13 +13,14 @@ import {
   Badge,
 } from "@chakra-ui/react"
 
-export default ({ groupTitle, stock, days, sid }: any) => {
+export default ({ groupTitle, groupColor, stock, days, sid }: any) => {
   const [range, setRange] = useState(days)
   const [src, setSrc] = useState(
     `https://ssl.pstatic.net/imgfinance/chart/item/area/week/${stock.code}.png?sidcode=${sid}`
   )
   const [candle, setCandle] = useState("")
   const [group, setGroup] = useState(groupTitle)
+  const [groupBadgeColor, setGroupBadgeColor] = useState(groupColor)
 
   useEffect(() => {
     setRange(days)
@@ -50,14 +51,14 @@ export default ({ groupTitle, stock, days, sid }: any) => {
   }, [days])
 
   return (
-    <VStack bg="white">
+    <VStack bg="white" borderRadius={10} p={1}>
       <a
         href={`https://finance.naver.com/item/main.naver?code=${stock.code}`}
         target="_blank"
       >
         <Center>
           <HStack>
-            <Badge colorScheme="purple" fontSize="10px">
+            <Badge bg={groupColor} fontSize="10px">
               {group}
             </Badge>
             <Text>&nbsp;{stock.title}&nbsp;</Text>

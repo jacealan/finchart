@@ -21,7 +21,7 @@ export default ({ stock, days, sid }: any) => {
   }, [days])
 
   return (
-    <Box w="100%" bg="white">
+    <Box w="100%" bg="white" borderRadius={10} p={1}>
       <a
         href={`https://finance.naver.com/sise/sise_index.naver?code=${stock.code}`}
         target="_blank"

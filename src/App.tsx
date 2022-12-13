@@ -358,6 +358,7 @@ function App() {
               return (
                 <Stock
                   groupTitle={group.groupTitle}
+                  groupColor={group.color}
                   stock={stock}
                   days={days}
                   sid={sid}

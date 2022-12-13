@@ -49,7 +49,7 @@ export default ({ stock, days, sid }: any) => {
   }, [days])
 
   return (
-    <VStack bg="white">
+    <VStack bg="white" borderRadius={10} p={1}>
       <a
         href={`https://finance.naver.com/marketindex/exchangeDetail.naver?marketindexCd=${stock.code}`}
         target="_blank"
