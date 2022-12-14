@@ -13,15 +13,15 @@ import {
   Badge,
 } from "@chakra-ui/react"
 
-export default ({ stock, days, sid }: any) => {
-  const [range, setRange] = useState(days)
+export default ({ stock, days, sid, id }: any) => {
+  // const [range, setRange] = useState(days)
   const [src, setSrc] = useState(
     `https://ssl.pstatic.net/imgfinance/chart/marketindex/area/month/${stock.code}.png?sidcode=`
   )
   const [candle, setCandle] = useState("")
 
   useEffect(() => {
-    setRange(days)
+    // setRange(days)
     if (days === 1) {
       setSrc(
         `https://ssl.pstatic.net/imgfinance/chart/marketindex/area/month/${stock.code}.png?sidcode=`
@@ -49,7 +49,7 @@ export default ({ stock, days, sid }: any) => {
   }, [days])
 
   return (
-    <VStack bg="white" borderRadius={10} p={1}>
+    <VStack bg="white" borderRadius={10} p={1} id={id}>
       <a
         href={`https://finance.naver.com/marketindex/exchangeDetail.naver?marketindexCd=${stock.code}`}
         target="_blank"
@@ -60,9 +60,9 @@ export default ({ stock, days, sid }: any) => {
               시장지표
             </Badge>
             <Text>&nbsp;{stock.title}&nbsp;</Text>
-            <Badge variant="outline" colorScheme="blackAlpha" fontSize="10px">
+            {/* <Badge variant="outline" colorScheme="blackAlpha" fontSize="10px">
               {candle}
-            </Badge>
+            </Badge> */}
           </HStack>
         </Center>
         <Image src={src}   />

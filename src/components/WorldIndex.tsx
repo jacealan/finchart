@@ -13,15 +13,15 @@ import {
   Badge,
 } from "@chakra-ui/react"
 
-export default ({ stock, days, sid }: any) => {
-  const [range, setRange] = useState(days)
+export default ({ stock, days, sid, id }: any) => {
+  // const [range, setRange] = useState(days)
   const [src, setSrc] = useState(
     `https://ssl.pstatic.net/imgfinance/chart/world/continent/${stock.code}.png?${sid}`
   )
   const [candle, setCandle] = useState("")
 
   useEffect(() => {
-    setRange(days)
+    // setRange(days)
     if (days === 1) {
       setSrc(
         `https://ssl.pstatic.net/imgfinance/chart/world/continent/${stock.code}.png?${sid}`
@@ -49,7 +49,7 @@ export default ({ stock, days, sid }: any) => {
   }, [days])
 
   return (
-    <VStack bg="white" borderRadius={10} p={1}>
+    <VStack bg="white" borderRadius={10} p={1} id={id}>
       <a
         href={`https://finance.naver.com/world/sise.naver?symbol=${stock.code}`}
         target="_blank"

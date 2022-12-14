@@ -13,15 +13,15 @@ import {
   Badge,
 } from "@chakra-ui/react"
 
-export default ({ stock, days, sid }: any) => {
-  const [range, setRange] = useState(days)
+export default ({ stock, days, sid, id }: any) => {
+  // const [range, setRange] = useState(days)
 
-  useEffect(() => {
-    setRange(days)
-  }, [days])
+  // useEffect(() => {
+  //   setRange(days)
+  // }, [days])
 
   return (
-    <Box w="100%" bg="white" borderRadius={10} p={1}>
+    <Box w="100%" bg="white" borderRadius={10} p={1} id={id}>
       <a
         href={`https://finance.naver.com/sise/sise_index.naver?code=${stock.code}`}
         target="_blank"

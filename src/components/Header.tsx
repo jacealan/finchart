@@ -1,8 +1,22 @@
 import React, { useState, useEffect } from "react"
 import { useSearchParams, Link } from "react-router-dom"
-import { Flex, Box, Spacer, HStack, Button, Image } from "@chakra-ui/react"
+import {
+  Flex,
+  Box,
+  Spacer,
+  HStack,
+  Button,
+  Image,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  IconButton,
+  Text,
+} from "@chakra-ui/react"
+import { HamburgerIcon } from "@chakra-ui/icons"
 
-export default ({ days }: any) => {
+export default ({ days, stocks }: any) => {
   const [range, setRange] = useState(days)
 
   useEffect(() => {
@@ -49,6 +63,34 @@ export default ({ days }: any) => {
               5Y
             </Button>
           </Link>
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              aria-label="Options"
+              icon={<HamburgerIcon />}
+              size="sm"
+              colorScheme="whiteAlpha"
+              variant="outline"
+            />
+            <MenuList>
+              <MenuItem>
+                <a href="#K">코스피/코스닥</a>
+              </MenuItem>
+              <MenuItem>
+                <a href="#W">해외지수</a>
+              </MenuItem>
+              <MenuItem>
+                <a href="#I">시장지표</a>
+              </MenuItem>
+              {stocks.map((group: any, index: number) => (
+                <MenuItem>
+                  <Flex>
+                    <a href={`#${group?.groupTitle}`}>{group?.groupTitle}</a>
+                  </Flex>
+                </MenuItem>
+              ))}
+            </MenuList>
+          </Menu>
         </HStack>
       </Flex>
     </Box>

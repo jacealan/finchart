@@ -13,4 +13,7 @@
 
 ```shell
 $ npx create-react-app finchart --template typescript
+$ yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion
+
+$ yarn create-react-app my-app --template @chakra-ui/typescript
 ```
