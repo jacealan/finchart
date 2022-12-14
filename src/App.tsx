@@ -23,6 +23,7 @@ import {
   ModalCloseButton,
   Text,
 } from "@chakra-ui/react"
+import { EditIcon } from "@chakra-ui/icons"
 
 import krxStock from "./krxStock"
 import krxETF from "./krxETF"
@@ -254,7 +255,10 @@ function App() {
       </Grid>
 
       <Center bg="black">
-        <Button onClick={onOpen}>그룹/종목 수정</Button>
+        <Button onClick={onOpen}>
+          <EditIcon />
+          <Text fontSize={14}>&nbsp;그룹/종목 수정</Text>
+        </Button>
       </Center>
 
       <Footer />
@@ -336,7 +340,6 @@ function App() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-
     </Box>
   )
 }

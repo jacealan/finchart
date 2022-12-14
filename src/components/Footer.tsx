@@ -19,26 +19,24 @@ export default ({ days }: any) => {
   const [loadtime, setLoadtime] = useState(now)
 
   return (
-    <Center bg="black" pb={10}>
-      <VStack>
+    <Center bg="black" pb={5}>
+      <Flex direction="column">
         <Flex alignItems="center">
-          <button>
-            <RepeatIcon
-              boxSize={3}
-              color="gray"
-              onClick={() => window.location.reload()}
-            />
-            &nbsp;
-          </button>
+          <RepeatIcon
+            boxSize={3}
+            color="gray"
+            onClick={() => window.location.reload()}
+          />
+          &nbsp;
           <Text color="gray" fontSize={10}>
             loaded at {loadtime.toLocaleDateString("ko-KR")}
             {loadtime.toLocaleTimeString("ko-KR")}
           </Text>
         </Flex>
-        <Text color="gray" fontSize={16}>
+        <Center color="gray" fontSize={16}>
           &copy; Jace
-        </Text>
-      </VStack>
+        </Center>
+      </Flex>
     </Center>
   )
 }
