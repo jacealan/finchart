@@ -61,7 +61,7 @@ export default ({ groupTitle, groupColor, stock, days, sid, id }: any) => {
             <Badge bg={groupColor} fontSize="10px">
               {groupTitle}
             </Badge>
-            <Text>&nbsp;{stock.title}&nbsp;</Text>
+            <Text noOfLines={1}>&nbsp;{stock.title}&nbsp;</Text>
             <Badge variant="outline" colorScheme="blackAlpha" fontSize="10px">
               {candle}
             </Badge>
