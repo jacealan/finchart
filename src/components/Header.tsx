@@ -95,9 +95,7 @@ export default ({ days, stocks }: any) => {
               </MenuItem>
               {stocks.map((group: any, index: number) => (
                 <MenuItem key={index}>
-                  <Link to={`#${group?.groupTitle}`} reloadDocument>
-                    {group?.groupTitle}
-                  </Link>
+                  <a href={`#${group?.groupTitle}`}>{group?.groupTitle}</a>
                 </MenuItem>
               ))}
             </MenuList>
