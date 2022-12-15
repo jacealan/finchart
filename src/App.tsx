@@ -57,8 +57,8 @@ function App() {
 
   // 해외 주식 지수
   const world: { title: string; code: string }[] = [
-    { title: "다우산업", code: "DJI@DJI" },
-    { title: "나스닥종합", code: "NAS@IXIC" },
+    { title: "다우산업 Dow Jones", code: "DJI@DJI" },
+    { title: "나스닥종합 NASDAQ", code: "NAS@IXIC" },
     { title: "S&P 500", code: "SPI@SPX" },
     { title: "상해종합", code: "SHS@000001" },
     { title: "항셍", code: "HSI@HSI" },
@@ -74,12 +74,12 @@ function App() {
       link: "https://finance.naver.com/marketindex/worldOilDetail.naver?marketindexCd=OIL_CL&fdtc=2",
     },
     {
-      title: "달런인덱스",
+      title: "달러인덱스",
       code: "FX_USDX",
       link: "https://finance.naver.com/marketindex/worldExchangeDetail.naver?marketindexCd=FX_USDX",
     },
     {
-      title: "KRW/USD",
+      title: "환율 KRW/USD",
       code: "FX_USDKRW",
       link: "https://finance.naver.com/marketindex/exchangeDetail.naver?marketindexCd=FX_USDKRW",
     },

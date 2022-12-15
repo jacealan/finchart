@@ -4,7 +4,8 @@
 - React: https://beta.reactjs.org/
 - React Router: https://reactrouter.com/en/main
 - Chakra UI: https://chakra-ui.com/
-
+- Fontsource: https://fontsource.org/
+- 
 ## References
 - Naver Finance: https://finance.naver.com/
 
