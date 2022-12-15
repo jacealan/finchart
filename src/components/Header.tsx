@@ -25,8 +25,8 @@ export default ({ days, stocks }: any) => {
   }, [days])
 
   return (
-    <Box bg="black" position="fixed" w="100vw">
-      <Flex mx={{ base: 5, md: 100 }} py={2} alignItems="center">
+    <Box bg="black" position="fixed" w="100vw" >
+      <Flex alignItems="center" py={2} mx={{ base: 5, lg: 100 }}>
         <Box boxSize={10}>
           <Image src="/android-chrome-192x192.png" />
         </Box>
@@ -94,7 +94,7 @@ export default ({ days, stocks }: any) => {
                 </Link>
               </MenuItem>
               {stocks.map((group: any, index: number) => (
-                <MenuItem>
+                <MenuItem key={index}>
                   <Link to={`#${group?.groupTitle}`} reloadDocument>
                     {group?.groupTitle}
                   </Link>

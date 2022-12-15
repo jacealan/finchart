@@ -202,8 +202,9 @@ function App() {
                   stock={stock}
                   days={days}
                   sid={sid}
-                  key={stock.code}
-                  id={stockIndex === 0 ? stocks[groupIndex]?.groupTitle : ""}
+                  key={`g${groupIndex}s${stockIndex}`}
+                  id={stocks[groupIndex]?.groupTitle}
+                  // id={stockIndex === 0 ? stocks[groupIndex]?.groupTitle : ""}
                 />
               )
           })
@@ -231,7 +232,7 @@ function App() {
           />
           <ModalBody pb={6}>
             {[0, 1, 2, 3, 4, 5].map((groupIdx, index) => (
-              <Box my={4}>
+              <Box my={4} key={index}>
                 <InputGroup size="sm">
                   <FormLabel htmlFor={`g${groupIdx}`} m={0}>
                     <InputLeftAddon w="80px" bg="gray.300">
@@ -252,7 +253,7 @@ function App() {
                 </InputGroup>
                 {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(
                   (stockIdx, index) => (
-                    <InputGroup size="sm">
+                    <InputGroup size="sm" key={index}>
                       <Input
                         w="80px"
                         id={`g${groupIdx}s${stockIdx}`}
