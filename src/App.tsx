@@ -22,6 +22,7 @@ import {
   ModalBody,
   ModalCloseButton,
   Text,
+  Divider,
 } from "@chakra-ui/react"
 import { EditIcon } from "@chakra-ui/icons"
 
@@ -45,23 +46,8 @@ function App() {
   const [searchParams, setSearchParams] = useSearchParams()
   const param = searchParams.get("range")
   const days = parseInt(param ? param : "90")
-  // console.log(days)
 
   const [loadtime, setLoadtime] = useState<Date>(now)
-  // const [editmode, setEditmode] = useState<boolean>(false)
-
-  // const [size, setSize] = useState<{
-  //   viewWidth: number
-  //   viewHeight: number
-  //   colsCount: number
-  // }>({
-  //   viewWidth: document.documentElement.clientWidth,
-  //   viewHeight: document.documentElement.clientHeight,
-  //   colsCount:
-  //     document.documentElement.clientWidth >= 560
-  //       ? Math.floor((document.documentElement.clientWidth - 10) / 550)
-  //       : 1,
-  // })
 
   // 코스피, 코스닥 지수
   const korea: { title: string; code: string }[] = [
@@ -153,7 +139,7 @@ function App() {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  // Eventlistener for hardware
+  // data from localstorage
   useEffect(() => {
     const stocksFromStorage = window.localStorage.getItem("stocks")
     if (stocksFromStorage) {
@@ -161,37 +147,7 @@ function App() {
     } else {
       window.localStorage.setItem("stocks", JSON.stringify(stocks))
     }
-    // window.addEventListener("resize", () => {
-    //   const clientWidth = document.documentElement.clientWidth
-    //   const clientHeight = document.documentElement.clientHeight
-    //   setSize({
-    //     viewWidth: clientWidth,
-    //     viewHeight: clientHeight,
-    //     colsCount:
-    //       clientWidth >= 560 ? Math.floor((clientWidth - 10) / 550) : 1,
-    //   })
-    // })
   }, [])
-
-  // const styles = {
-  //   App: {
-  //     width: `${
-  //       size.viewWidth >= 560 ? size.colsCount * 550 + 10 : size.viewWidth
-  //     }px`,
-  //   },
-  //   Header: {
-  //     width: `${
-  //       size.viewWidth >= 560 ? size.colsCount * 550 - 10 : size.viewWidth - 20
-  //     }px`,
-  //   },
-  //   Charts: {
-  //     gridTemplateColumns: `${
-  //       size.viewWidth >= 560
-  //         ? "repeat(auto-fit, minmax(540px, 1fr))"
-  //         : "repeat(auto-fit, minmax(360px, 1fr))"
-  //     }`,
-  //   },
-  // }
 
   return (
     <Box>
@@ -255,9 +211,8 @@ function App() {
       </Grid>
 
       <Center bg="black">
-        <Button onClick={onOpen}>
-          <EditIcon />
-          <Text fontSize={14}>&nbsp;그룹/종목 수정</Text>
+        <Button leftIcon={<EditIcon />} onClick={onOpen} fontSize="xs">
+          그룹/종목 수정
         </Button>
       </Center>
 
@@ -278,7 +233,14 @@ function App() {
             {[0, 1, 2, 3, 4, 5].map((groupIdx, index) => (
               <Box my={4}>
                 <InputGroup size="sm">
-                  <InputLeftAddon w="80px" children="그룹이름" />
+                  <FormLabel htmlFor={`g${groupIdx}`} m={0}>
+                    <InputLeftAddon w="80px" bg="gray.300">
+                      <Text w="100%" textAlign="center">
+                        그룹 {groupIdx + 1}
+                      </Text>
+                    </InputLeftAddon>
+                  </FormLabel>
+
                   <Input
                     w="calc(100% - 80px)"
                     id={`g${groupIdx}`}
@@ -299,20 +261,25 @@ function App() {
                         value={stocks[groupIdx]?.codes[stockIdx]?.code}
                         onChange={codeChange}
                       />
-                      <InputRightAddon
+                      <FormLabel
+                        htmlFor={`g${groupIdx}s${stockIdx}`}
                         w="calc(100% - 80px)"
-                        children={
-                          findStockName(groupIdx, stockIdx)
-                            ? findStockName(groupIdx, stockIdx)
-                            : null
-                        }
-                      />
+                        m={0}
+                      >
+                        <InputRightAddon
+                          children={
+                            findStockName(groupIdx, stockIdx)
+                              ? findStockName(groupIdx, stockIdx)
+                              : null
+                          }
+                        />
+                      </FormLabel>
                     </InputGroup>
                   )
                 )}
               </Box>
             ))}
-            <Text fontSize="10px" align="right">
+            <Text fontSize="xs" align="right">
               신규 종목은 최소 1주일 후 등록가능합니다
             </Text>
           </ModalBody>

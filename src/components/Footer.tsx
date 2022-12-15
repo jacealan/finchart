@@ -28,12 +28,12 @@ export default ({ days }: any) => {
             onClick={() => window.location.reload()}
           />
           &nbsp;
-          <Text color="gray" fontSize={10}>
+          <Text color="gray" fontSize="xs">
             loaded at {loadtime.toLocaleDateString("ko-KR")}
             {loadtime.toLocaleTimeString("ko-KR")}
           </Text>
         </Flex>
-        <Center color="gray" fontSize={16}>
+        <Center color="gray">
           &copy; Jace
         </Center>
       </Flex>

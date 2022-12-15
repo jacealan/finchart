@@ -14,12 +14,6 @@ import {
 } from "@chakra-ui/react"
 
 export default ({ stock, days, sid, id }: any) => {
-  // const [range, setRange] = useState(days)
-
-  // useEffect(() => {
-  //   setRange(days)
-  // }, [days])
-
   return (
     <Box w="100%" bg="white" borderRadius={10} p={1} id={id}>
       <a
@@ -30,13 +24,13 @@ export default ({ stock, days, sid, id }: any) => {
           <Center>
             <HStack>
               <Text>{stock.title}</Text>
-              <Badge colorScheme="pink" fontSize="10px">
+              <Badge colorScheme="pink" fontSize="xs">
                 개인
               </Badge>
-              <Badge colorScheme="orange" fontSize="10px">
+              <Badge colorScheme="orange" fontSize="xs">
                 외국인
               </Badge>
-              <Badge colorScheme="cyan" fontSize="10px">
+              <Badge colorScheme="cyan" fontSize="xs">
                 기관
               </Badge>
             </HStack>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useSearchParams, Link } from "react-router-dom"
+import { useNavigate, useSearchParams, Link } from "react-router-dom"
 import {
   Flex,
   Box,
@@ -17,6 +17,7 @@ import {
 import { HamburgerIcon } from "@chakra-ui/icons"
 
 export default ({ days, stocks }: any) => {
+  const navigate = useNavigate()
   const [range, setRange] = useState(days)
 
   useEffect(() => {
@@ -31,38 +32,42 @@ export default ({ days, stocks }: any) => {
         </Box>
         <Spacer />
         <HStack>
-          <Link to="?range=1">
-            <Button
-              size="sm"
-              colorScheme={range === 1 ? "yellow" : "blackAlpha"}
-            >
-              1D
-            </Button>
-          </Link>
-          <Link to="?range=90">
-            <Button
-              size="sm"
-              colorScheme={range === 90 ? "yellow" : "blackAlpha"}
-            >
-              3M
-            </Button>
-          </Link>
-          <Link to="?range=365">
-            <Button
-              size="sm"
-              colorScheme={range === 365 ? "yellow" : "blackAlpha"}
-            >
-              1Y
-            </Button>
-          </Link>
-          <Link to="?range=1095">
-            <Button
-              size="sm"
-              colorScheme={range === 1095 ? "yellow" : "blackAlpha"}
-            >
-              5Y
-            </Button>
-          </Link>
+          <Button
+            size="sm"
+            colorScheme={range === 1 ? "yellow" : "blackAlpha"}
+            onClick={() => {
+              navigate("?range=1")
+            }}
+          >
+            1D
+          </Button>
+          <Button
+            size="sm"
+            colorScheme={range === 90 ? "yellow" : "blackAlpha"}
+            onClick={() => {
+              navigate("?range=90")
+            }}
+          >
+            3M
+          </Button>
+          <Button
+            size="sm"
+            colorScheme={range === 365 ? "yellow" : "blackAlpha"}
+            onClick={() => {
+              navigate("?range=365")
+            }}
+          >
+            1Y
+          </Button>
+          <Button
+            size="sm"
+            colorScheme={range === 1095 ? "yellow" : "blackAlpha"}
+            onClick={() => {
+              navigate("?range=1095")
+            }}
+          >
+            5Y
+          </Button>
           <Menu>
             <MenuButton
               as={IconButton}
@@ -74,19 +79,25 @@ export default ({ days, stocks }: any) => {
             />
             <MenuList>
               <MenuItem>
-                <a href="#K">코스피/코스닥</a>
+                <Link to="#K" reloadDocument>
+                  코스피/코스닥
+                </Link>
               </MenuItem>
               <MenuItem>
-                <a href="#W">해외지수</a>
+                <Link to="#W" reloadDocument>
+                  해외지수
+                </Link>
               </MenuItem>
               <MenuItem>
-                <a href="#I">시장지표</a>
+                <Link to="#I" reloadDocument>
+                  시장지표
+                </Link>
               </MenuItem>
               {stocks.map((group: any, index: number) => (
                 <MenuItem>
-                  <Flex>
-                    <a href={`#${group?.groupTitle}`}>{group?.groupTitle}</a>
-                  </Flex>
+                  <Link to={`#${group?.groupTitle}`} reloadDocument>
+                    {group?.groupTitle}
+                  </Link>
                 </MenuItem>
               ))}
             </MenuList>
