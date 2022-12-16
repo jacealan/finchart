@@ -37,29 +37,34 @@ export default ({ stock, days, sid, id }: any) => {
           </Center>
           <Image
             src={`https://ssl.pstatic.net/imgfinance/chart/sise/siseMain${stock.code}.png?sid=${sid}`}
+            alt={stock.title}
           />
           <Flex bg="white">
             <Box m="1px">
               <Image
                 src={`https://ssl.pstatic.net/imgstock/chart3/day1095/${stock.code}.png?sid=${sid}`}
+                alt={stock.title}
               />
             </Box>
             <Spacer />
             <Box m="1px">
               <Image
                 src={`https://ssl.pstatic.net/imgstock/chart3/day365/${stock.code}.png?sid=${sid}`}
+                alt={stock.title}
               />
             </Box>
             <Spacer />
             <Box m="1px">
               <Image
                 src={`https://ssl.pstatic.net/imgstock/chart3/day90/${stock.code}.png?sid=${sid}`}
+                alt={stock.title}
               />
             </Box>
             <Spacer />
             <Box m="1px">
               <Image
                 src={`https://ssl.pstatic.net/imgstock/chart3/day/${stock.code}.png?sid=${sid}`}
+                alt={stock.title}
               />
             </Box>
           </Flex>

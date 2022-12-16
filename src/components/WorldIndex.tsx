@@ -70,6 +70,7 @@ export default ({ stock, days, sid, id }: any) => {
           </Flex>
           <Image
             src={src}
+            alt={stock.title}
             onError={(e) => {
               e.currentTarget.src = `https://ssl.pstatic.net/imgfinance/chart/world/candle/day/${stock.code}.png?${sid}`
             }}

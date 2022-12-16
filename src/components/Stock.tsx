@@ -66,7 +66,7 @@ export default ({ groupTitle, groupColor, stock, days, sid, id }: any) => {
               <Box>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Box>
             )}
           </Flex>
-          <Image src={src} />
+          <Image src={src} alt={stock.title} />
         </a>
       </Box>
     </VStack>

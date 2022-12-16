@@ -60,7 +60,7 @@ export default ({ stock, days, sid, id }: any) => {
             <Text>{stock.title}</Text>
             <Box>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Box>
           </Flex>
-          <Image src={src} />
+          <Image src={src} alt={stock.title} />
         </a>
       </Box>
     </VStack>
