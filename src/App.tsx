@@ -54,6 +54,8 @@ import Stock from "./components/Stock"
 const now: Date = new Date()
 const sid: number = now.getTime()
 const codes: any[] = [...krxStock.OutBlock_1, ...krxETF.output]
+const colorShemes = ["gray.300", "red.200", "orange.200", "green.100", "blue.100", "purple.200", ]
+// "yellow.200", "cyan.200", "pink.200"
 
 function App() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -227,7 +229,7 @@ function App() {
               return (
                 <Stock
                   groupTitle={group.groupTitle}
-                  groupColor={group.color}
+                  groupColor={colorShemes[groupIndex]}
                   stock={stock}
                   days={days}
                   sid={sid}
