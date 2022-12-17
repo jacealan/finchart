@@ -26,6 +26,20 @@ import {
 } from "@chakra-ui/react"
 import { EditIcon } from "@chakra-ui/icons"
 
+import { authService, dbService } from "./fbase"
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  UserCredential,
+} from "firebase/auth"
+import { doc, setDoc, getDoc, deleteDoc } from "firebase/firestore"
+import {
+  useAuthState,
+  useSignInWithGoogle,
+  useSignOut,
+} from "react-firebase-hooks/auth"
+
 import krxStock from "./krxStock"
 import krxETF from "./krxETF"
 import stocksInit from "./stocksInit"
@@ -36,7 +50,6 @@ import KoreaIndex from "./components/KoreaIndex"
 import WorldIndex from "./components/WorldIndex"
 import MarketIndex from "./components/MarketIndex"
 import Stock from "./components/Stock"
-import "./App.css"
 
 const now: Date = new Date()
 const sid: number = now.getTime()
@@ -48,6 +61,8 @@ function App() {
   const days = parseInt(param ? param : "90")
 
   const [loadtime, setLoadtime] = useState<Date>(now)
+
+  const [currentUser, setCurrentUser] = useState<any>(null)
 
   // 코스피, 코스닥 지수
   const korea: { title: string; code: string }[] = [
@@ -116,6 +131,8 @@ function App() {
     const {
       currentTarget: { name, value },
     } = event
+    const stockName = findStock(value)?.ISU_ABBRV
+
     if (name.length === 2) {
       const groupOrder = parseInt(name[1])
       newStocks[groupOrder].groupTitle = value
@@ -125,7 +142,7 @@ function App() {
       const groupOrder = parseInt(name[1])
       const stockOrder = parseInt(name.slice(3))
       newStocks[groupOrder].codes[stockOrder] = {
-        title: findStock(value)?.ISU_ABBRV,
+        title: stockName ? stockName : "",
         code: value,
       }
       setStocks([...newStocks])
@@ -141,6 +158,18 @@ function App() {
 
   // data from localstorage
   useEffect(() => {
+    authService.onAuthStateChanged(async (user) => {
+      await setCurrentUser(user)
+      // console.log(user)
+      if (user) {
+        const docSnap = await getDoc(doc(dbService, "fins", user.uid))
+        const stocksFromFirebase = docSnap.data()
+        setStocks([...stocksFromFirebase?.watchlist])
+        // console.log(stocksFromFirebase?.watchlist)
+        // console.log(stocks)
+      }
+    })
+
     const stocksFromStorage = window.localStorage.getItem("stocks")
     if (stocksFromStorage) {
       setStocks([...JSON.parse(stocksFromStorage)])
@@ -289,7 +318,12 @@ function App() {
             <Button
               colorScheme="blue"
               mr={3}
-              onClick={() => {
+              onClick={async () => {
+                currentUser &&
+                  (await setDoc(doc(dbService, "fins", currentUser.uid), {
+                    author: currentUser.uid,
+                    watchlist: stocks,
+                  }))
                 window.localStorage.setItem("stocks", JSON.stringify(stocks))
                 onClose()
               }}
