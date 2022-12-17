@@ -69,6 +69,7 @@ export default ({ stock, days, sid, id }: any) => {
             )}
           </Flex>
           <Image
+            w="100%"
             src={src}
             alt={stock.title}
             onError={(e) => {

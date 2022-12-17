@@ -36,6 +36,7 @@ export default ({ stock, days, sid, id }: any) => {
             </HStack>
           </Center>
           <Image
+            w="100%"
             src={`https://ssl.pstatic.net/imgfinance/chart/sise/siseMain${stock.code}.png?sid=${sid}`}
             alt={stock.title}
           />
