@@ -35,7 +35,7 @@ import {
   signOut,
   UserCredential,
 } from "firebase/auth"
-import { doc, setDoc, getDoc, deleteDoc } from "firebase/firestore"
+import { doc, setDoc, getDoc, updateDoc, deleteDoc } from "firebase/firestore"
 import {
   useAuthState,
   useSignInWithGoogle,
@@ -56,7 +56,11 @@ import Stock from "./components/Stock"
 
 const now: Date = new Date()
 const sid: number = now.getTime()
-const codes: any[] = [...krxStock.OutBlock_1, ...krxETF.output, ...krxETN.output]
+const codes: any[] = [
+  ...krxStock.OutBlock_1,
+  ...krxETF.output,
+  ...krxETN.output,
+]
 const colorShemes = [
   "gray.300",
   "red.200",
@@ -182,7 +186,17 @@ function App() {
       if (user) {
         const docSnap = await getDoc(doc(dbService, "fins", user.uid))
         const stocksFromFirebase = docSnap.data()
-        setStocks([...stocksFromFirebase?.watchlist])
+        if (stocksFromFirebase) {
+          setStocks([...stocksFromFirebase?.watchlist])
+        } else {
+          const now: Date = new Date()
+          await setDoc(doc(dbService, "fins", user.uid), {
+            author: user.uid,
+            watchlist: stocks,
+            createdAt: now,
+            updatedAt: now,
+          })
+        }
       }
     })
   }, [])
@@ -332,9 +346,10 @@ function App() {
               mr={3}
               onClick={async () => {
                 currentUser
-                  ? await setDoc(doc(dbService, "fins", currentUser.uid), {
-                      author: currentUser.uid,
+                  ? await updateDoc(doc(dbService, "fins", currentUser.uid), {
+                      // author: currentUser.uid,
                       watchlist: stocks,
+                      updatedAt: new Date(),
                     })
                   : window.localStorage.setItem(
                       "stocks",
