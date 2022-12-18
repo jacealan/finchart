@@ -58,7 +58,7 @@ export default ({ days, stocks }: any) => {
 
   return (
     <Box bg="black" position="fixed" w="100%">
-      <Flex alignItems="center" py={2} px={{ base: 0, sm: 0, md: 5, lg: 5, xl: 100 }}>
+      <Flex alignItems="center" py={2} px={{ base: 3, sm: 3, md: 5, lg: 5, xl: 100 }}>
         <Box boxSize={10}>
           <Image src="/android-chrome-192x192.png" />
         </Box>
