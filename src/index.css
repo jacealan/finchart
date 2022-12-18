@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   word-break: keep-all;
-  /* overflow: auto; */
+  /* overflow-x: none; */
   scroll-margin-block-start: 60px;
   /* IE and Edge */
   -ms-overflow-style: none;
