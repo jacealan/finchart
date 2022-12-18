@@ -17,15 +17,15 @@
   width: 6px;
 }
 *::-webkit-scrollbar-thumb {
-  background-color: white;
-  border-radius: 10px;
+  background-color: gray;
+  border-radius: 6px;
   background-clip: padding-box;
   border: 2px solid transparent;
 }
 *::-webkit-scrollbar-track {
-  background-color: gray;
-  border-radius: 5px;
-  box-shadow: inset -1px -1px 3px white;
+  background-color: black;
+  /* border-radius: 5px; */
+  /* box-shadow: inset -1px -1px 3px white; */
 }
 
 input,
