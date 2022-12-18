@@ -3,6 +3,8 @@ import { useSearchParams } from "react-router-dom"
 import {
   Box,
   Grid,
+  Stack,
+  HStack,
   Button,
   FormControl,
   FormLabel,
@@ -26,7 +28,7 @@ import {
   Card,
   CardBody,
 } from "@chakra-ui/react"
-import { EditIcon } from "@chakra-ui/icons"
+import { EditIcon, WarningIcon } from "@chakra-ui/icons"
 
 import { authService, dbService } from "./fbase"
 import {
@@ -198,6 +200,7 @@ function App() {
           })
         }
       }
+      console.log(user, currentUser)
     })
   }, [])
 
@@ -264,9 +267,16 @@ function App() {
       </Grid>
 
       <Center bg="black">
-        <Button leftIcon={<EditIcon />} onClick={onOpen} fontSize="xs">
-          그룹/종목 수정
-        </Button>
+        <HStack spacing={4}>
+          <Button leftIcon={<EditIcon />} onClick={onOpen} fontSize="xs">
+            그룹/종목 수정
+          </Button>
+          {currentUser ? null : (
+            <Button leftIcon={<WarningIcon />} onClick={onOpen} fontSize="xs">
+              그룹/종목 초기화
+            </Button>
+          )}
+        </HStack>
       </Center>
 
       <Footer />
