@@ -206,7 +206,6 @@ function App() {
       } else {
         getFromStorage()
       }
-      console.log(user, currentUser)
     })
   }, [])
 
@@ -282,7 +281,6 @@ function App() {
             <Button
               leftIcon={<WarningIcon />}
               onClick={() => {
-                console.log("clicked", stocksInit)
                 setStocks(stocksInit)
                 window.localStorage.setItem(
                   "stocks",
