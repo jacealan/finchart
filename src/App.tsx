@@ -217,7 +217,7 @@ function App() {
         py="60px"
         templateColumns={{
           base: "1fr",
-          md: "repeat(auto-fill, minmax(360px, 1fr))",
+          md: "repeat(auto-fill, minmax(400px, 1fr))",
         }}
         gap="5px"
         bg="black"
