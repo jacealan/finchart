@@ -146,7 +146,7 @@ function App() {
   // 그룹/종목
   const [stocks, setStocks] = useState(stocksInit)
   const codeChange = (event: React.FormEvent<HTMLInputElement>) => {
-    const newStocks = [...stocks]
+    const newStocks = JSON.parse(JSON.stringify(stocks))
     const {
       currentTarget: { name, value },
     } = event
@@ -282,6 +282,7 @@ function App() {
             <Button
               leftIcon={<WarningIcon />}
               onClick={() => {
+                console.log("clicked", stocksInit)
                 setStocks(stocksInit)
                 window.localStorage.setItem(
                   "stocks",
