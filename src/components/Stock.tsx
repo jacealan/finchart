@@ -55,7 +55,7 @@ export default ({ groupTitle, groupColor, stock, days, sid, id }: any) => {
         >
           <Flex justifyContent="space-between" alignItems="center" mx={2}>
             <Badge bg={groupColor} fontSize="xs">
-              {groupTitle}
+              {groupTitle ? groupTitle : <span>&nbsp;</span>}
             </Badge>
             <Text noOfLines={1}>{stock.title}</Text>
             {candle ? (
