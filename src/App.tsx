@@ -222,6 +222,7 @@ function App() {
         gap="5px"
         bg="black"
         px={{ base: 0, sm: 0, md: 5, lg: 5, xl: 100 }}
+        w="100vw"
       >
         {korea.map((stock, index) => (
           <KoreaIndex
