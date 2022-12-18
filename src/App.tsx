@@ -143,6 +143,7 @@ function App() {
     // },
   ]
 
+  // 그룹/종목
   const [stocks, setStocks] = useState(stocksInit)
   const codeChange = (event: React.FormEvent<HTMLInputElement>) => {
     const newStocks = [...stocks]
@@ -175,13 +176,16 @@ function App() {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   // data from localstorage
-  useEffect(() => {
+  const getFromStorage = () => {
     const stocksFromStorage = window.localStorage.getItem("stocks")
     if (stocksFromStorage) {
       setStocks([...JSON.parse(stocksFromStorage)])
     } else {
       window.localStorage.setItem("stocks", JSON.stringify(stocks))
     }
+  }
+  useEffect(() => {
+    getFromStorage()
 
     authService.onAuthStateChanged(async (user) => {
       await setCurrentUser(user)
@@ -199,6 +203,8 @@ function App() {
             updatedAt: now,
           })
         }
+      } else {
+        getFromStorage()
       }
       console.log(user, currentUser)
     })
@@ -272,7 +278,17 @@ function App() {
             그룹/종목 수정
           </Button>
           {currentUser ? null : (
-            <Button leftIcon={<WarningIcon />} onClick={onOpen} fontSize="xs">
+            <Button
+              leftIcon={<WarningIcon />}
+              onClick={() => {
+                setStocks(stocksInit)
+                window.localStorage.setItem(
+                  "stocks",
+                  JSON.stringify(stocksInit)
+                )
+              }}
+              fontSize="xs"
+            >
               그룹/종목 초기화
             </Button>
           )}
