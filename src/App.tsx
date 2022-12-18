@@ -23,6 +23,8 @@ import {
   ModalCloseButton,
   Text,
   Divider,
+  Card,
+  CardBody,
 } from "@chakra-ui/react"
 import { EditIcon } from "@chakra-ui/icons"
 
@@ -42,6 +44,7 @@ import {
 
 import krxStock from "./krxStock"
 import krxETF from "./krxETF"
+import krxETN from "./krxETN"
 import stocksInit from "./stocksInit"
 
 import Header from "./components/Header"
@@ -53,8 +56,15 @@ import Stock from "./components/Stock"
 
 const now: Date = new Date()
 const sid: number = now.getTime()
-const codes: any[] = [...krxStock.OutBlock_1, ...krxETF.output]
-const colorShemes = ["gray.300", "red.200", "orange.200", "green.100", "blue.100", "purple.200", ]
+const codes: any[] = [...krxStock.OutBlock_1, ...krxETF.output, ...krxETN.output]
+const colorShemes = [
+  "gray.300",
+  "red.200",
+  "orange.200",
+  "green.100",
+  "blue.100",
+  "purple.200",
+]
 // "yellow.200", "cyan.200", "pink.200"
 
 function App() {
@@ -160,24 +170,21 @@ function App() {
 
   // data from localstorage
   useEffect(() => {
-    authService.onAuthStateChanged(async (user) => {
-      await setCurrentUser(user)
-      // console.log(user)
-      if (user) {
-        const docSnap = await getDoc(doc(dbService, "fins", user.uid))
-        const stocksFromFirebase = docSnap.data()
-        setStocks([...stocksFromFirebase?.watchlist])
-        // console.log(stocksFromFirebase?.watchlist)
-        // console.log(stocks)
-      }
-    })
-
     const stocksFromStorage = window.localStorage.getItem("stocks")
     if (stocksFromStorage) {
       setStocks([...JSON.parse(stocksFromStorage)])
     } else {
       window.localStorage.setItem("stocks", JSON.stringify(stocks))
     }
+
+    authService.onAuthStateChanged(async (user) => {
+      await setCurrentUser(user)
+      if (user) {
+        const docSnap = await getDoc(doc(dbService, "fins", user.uid))
+        const stocksFromFirebase = docSnap.data()
+        setStocks([...stocksFromFirebase?.watchlist])
+      }
+    })
   }, [])
 
   return (
@@ -262,6 +269,9 @@ function App() {
             }}
           />
           <ModalBody pb={6}>
+            {/* <Text fontSize="xs" align="right">
+              다른 곳에서 수정된 목록은, 로그인때 적용됩니다
+            </Text> */}
             {[0, 1, 2, 3, 4, 5].map((groupIdx, index) => (
               <Box my={4} key={index}>
                 <InputGroup size="sm">
@@ -321,12 +331,15 @@ function App() {
               colorScheme="blue"
               mr={3}
               onClick={async () => {
-                currentUser &&
-                  (await setDoc(doc(dbService, "fins", currentUser.uid), {
-                    author: currentUser.uid,
-                    watchlist: stocks,
-                  }))
-                window.localStorage.setItem("stocks", JSON.stringify(stocks))
+                currentUser
+                  ? await setDoc(doc(dbService, "fins", currentUser.uid), {
+                      author: currentUser.uid,
+                      watchlist: stocks,
+                    })
+                  : window.localStorage.setItem(
+                      "stocks",
+                      JSON.stringify(stocks)
+                    )
                 onClose()
               }}
             >
