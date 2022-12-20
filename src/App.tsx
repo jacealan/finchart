@@ -73,7 +73,7 @@ const colorShemes = [
   "purple.200",
 ]
 // "yellow.200", "cyan.200", "pink.200"
-const lazyingSecond = 150
+const lazyingSecond = 550
 
 function App() {
   const [searchParams, setSearchParams] = useSearchParams()

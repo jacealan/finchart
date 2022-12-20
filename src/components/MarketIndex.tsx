@@ -16,9 +16,9 @@ import {
 
 export default ({ stock, days, sid, id, lazyingSecond }: any) => {
   const [isLoaded, setIsLoaded] = useState(false)
-  useEffect(() => {
-    setTimeout(() => setIsLoaded(true), lazyingSecond)
-  }, [])
+  // useEffect(() => {
+  //   setTimeout(() => setIsLoaded(true), lazyingSecond)
+  // }, [])
 
   const [src, setSrc] = useState(
     `https://ssl.pstatic.net/imgfinance/chart/marketindex/area/month/${stock.code}.png?sidcode=`
@@ -67,7 +67,13 @@ export default ({ stock, days, sid, id, lazyingSecond }: any) => {
             <Box>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Box>
           </Flex>
           <Skeleton w="100%" h="100%" isLoaded={isLoaded}>
-            <Image src={src} alt={stock.title} />
+            <Image
+              src={src}
+              alt={stock.title}
+              onLoad={() => {
+                setIsLoaded(true)
+              }}
+            />
           </Skeleton>
         </a>
       </Box>
