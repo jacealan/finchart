@@ -55,6 +55,7 @@ import KoreaIndex from "./components/KoreaIndex"
 import WorldIndex from "./components/WorldIndex"
 import MarketIndex from "./components/MarketIndex"
 import Stock from "./components/Stock"
+import { LazyMotion } from "framer-motion"
 
 const now: Date = new Date()
 const sid: number = now.getTime()
@@ -72,6 +73,7 @@ const colorShemes = [
   "purple.200",
 ]
 // "yellow.200", "cyan.200", "pink.200"
+const lazyingSecond = 150
 
 function App() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -216,7 +218,9 @@ function App() {
         py="60px"
         templateColumns={{
           base: "1fr",
+          sm: "repeat(auto-fill, minmax(400px, 1fr))",
           md: "repeat(auto-fill, minmax(400px, 1fr))",
+          lg: "repeat(auto-fill, minmax(450px, 1fr))",
         }}
         gap="5px"
         bg="black"
@@ -230,6 +234,7 @@ function App() {
             sid={sid}
             key={stock.code}
             id={index === 0 ? "K" : ""}
+            lazyingSecond={lazyingSecond}
           />
         ))}
 
@@ -240,6 +245,7 @@ function App() {
             sid={sid}
             key={stock.code}
             id={index === 0 ? "W" : ""}
+            lazyingSecond={lazyingSecond}
           />
         ))}
 
@@ -250,6 +256,7 @@ function App() {
             sid={sid}
             key={stock.code}
             id={index === 0 ? "I" : ""}
+            lazyingSecond={lazyingSecond}
           />
         ))}
 
@@ -266,6 +273,7 @@ function App() {
                   key={`g${groupIndex}s${stockIndex}`}
                   id={stocks[groupIndex]?.groupTitle}
                   // id={stockIndex === 0 ? stocks[groupIndex]?.groupTitle : ""}
+                  lazyingSecond={lazyingSecond}
                 />
               )
           })

@@ -13,9 +13,15 @@ import {
   Text,
   Badge,
   calc,
+  Skeleton,
 } from "@chakra-ui/react"
 
-export default ({ stock, days, sid, id }: any) => {
+export default ({ stock, days, sid, id, lazyingSecond }: any) => {
+  const [isLoaded, setIsLoaded] = useState(false)
+  useEffect(() => {
+    setTimeout(() => setIsLoaded(true), lazyingSecond)
+  }, [])
+
   const [src, setSrc] = useState(
     `https://ssl.pstatic.net/imgfinance/chart/world/continent/${stock.code}.png?${sid}`
   )
@@ -68,14 +74,17 @@ export default ({ stock, days, sid, id }: any) => {
               <Box>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Box>
             )}
           </Flex>
-          <Image
-            w="100%"
-            src={src}
-            alt={stock.title}
-            onError={(e) => {
-              e.currentTarget.src = `https://ssl.pstatic.net/imgfinance/chart/world/candle/day/${stock.code}.png?${sid}`
-            }}
-          />
+          <Skeleton w="100%" h="100%" isLoaded={isLoaded}>
+            <Image
+              // loading="lazy"
+              w="100%"
+              src={src}
+              alt={stock.title}
+              onError={(e) => {
+                e.currentTarget.src = `https://ssl.pstatic.net/imgfinance/chart/world/candle/day/${stock.code}.png?${sid}`
+              }}
+            />
+          </Skeleton>
         </a>
       </Box>
     </VStack>

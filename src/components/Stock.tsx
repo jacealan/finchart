@@ -11,9 +11,23 @@ import {
   Image,
   Text,
   Badge,
+  Skeleton,
 } from "@chakra-ui/react"
 
-export default ({ groupTitle, groupColor, stock, days, sid, id }: any) => {
+export default ({
+  groupTitle,
+  groupColor,
+  stock,
+  days,
+  sid,
+  id,
+  lazyingSecond,
+}: any) => {
+  const [isLoaded, setIsLoaded] = useState(false)
+  useEffect(() => {
+    setTimeout(() => setIsLoaded(true), lazyingSecond)
+  }, [])
+
   const [src, setSrc] = useState(
     `https://ssl.pstatic.net/imgfinance/chart/item/area/week/${stock.code}.png?sidcode=${sid}`
   )
@@ -66,7 +80,9 @@ export default ({ groupTitle, groupColor, stock, days, sid, id }: any) => {
               <Box>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Box>
             )}
           </Flex>
-          <Image src={src} alt={stock.title} />
+          <Skeleton w="100%" h="100%" isLoaded={isLoaded}>
+            <Image src={src} alt={stock.title} />
+          </Skeleton>
         </a>
       </Box>
     </VStack>
