@@ -67,18 +67,35 @@ export default ({
           href={`https://finance.naver.com/item/main.naver?code=${stock.code}`}
           target="_blank"
         >
-          <Flex justifyContent="space-between" alignItems="center" mx={2}>
-            <Badge bg={groupColor} fontSize="xs">
-              {groupTitle ? groupTitle : <span>&nbsp;</span>}
-            </Badge>
-            <Text noOfLines={1}>{stock.title}</Text>
-            {candle ? (
-              <Badge variant="outline" colorScheme="blackAlpha" fontSize="xs">
-                {candle}
-              </Badge>
-            ) : (
-              <Box>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Box>
-            )}
+          <Flex justifyContent="space-between" alignItems="center" mx={2} mb={2}>
+            <Skeleton h={4} isLoaded={isLoaded}>
+              <Flex alignItems={"center"}>
+                <Badge bg={groupColor} fontSize="xs">
+                  {groupTitle ? groupTitle : <span>&nbsp;</span>}
+                </Badge>
+              </Flex>
+            </Skeleton>
+
+            <Skeleton h={5} isLoaded={isLoaded}>
+              <Flex alignItems={"center"}>
+                <Text noOfLines={1}>{stock.title}</Text>
+              </Flex>
+            </Skeleton>
+            <Skeleton h={4} isLoaded={isLoaded}>
+              {candle ? (
+                <Flex alignItems={"center"}>
+                  <Badge
+                    variant="outline"
+                    colorScheme="blackAlpha"
+                    fontSize="xs"
+                  >
+                    {candle}
+                  </Badge>
+                </Flex>
+              ) : (
+                <Box>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Box>
+              )}
+            </Skeleton>
           </Flex>
           <Skeleton w="100%" h="100%" isLoaded={isLoaded}>
             <Image

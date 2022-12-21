@@ -61,7 +61,7 @@ export default ({ stock, days, sid, id, lazyingSecond }: any) => {
           href={`https://finance.naver.com/world/sise.naver?symbol=${stock.code}`}
           target="_blank"
         >
-          <Flex justifyContent="space-between" alignItems="center" mx={2}>
+          <Flex justifyContent="space-between" alignItems="center" mx={2} mb={2}>
             <Badge colorScheme="green" fontSize="xs">
               해외지수
             </Badge>
