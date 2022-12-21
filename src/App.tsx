@@ -181,13 +181,18 @@ function App() {
   const getFromStorage = () => {
     const stocksFromStorage = window.localStorage.getItem("stocks")
     if (stocksFromStorage) {
-      setStocks([...JSON.parse(stocksFromStorage)])
+      setStocks(JSON.parse(stocksFromStorage))
     } else {
       window.localStorage.setItem("stocks", JSON.stringify(stocks))
     }
   }
   useEffect(() => {
-    getFromStorage()
+    const stocksFromStorage = window.localStorage.getItem("stocks")
+    if (stocksFromStorage) {
+      setStocks(JSON.parse(stocksFromStorage))
+    } else {
+      window.localStorage.setItem("stocks", JSON.stringify(stocks))
+    }
 
     authService.onAuthStateChanged(async (user) => {
       await setCurrentUser(user)
@@ -206,7 +211,13 @@ function App() {
           })
         }
       } else {
-        getFromStorage()
+        const stocksFromStorage = window.localStorage.getItem("stocks")
+        if (stocksFromStorage) {
+          setStocks(JSON.parse(stocksFromStorage))
+        } else {
+          setStocks(stocksInit)
+          window.localStorage.setItem("stocks", JSON.stringify(stocksInit))
+        }
       }
     })
   }, [])
